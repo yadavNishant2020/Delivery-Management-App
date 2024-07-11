@@ -1,8 +1,8 @@
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import User from '../models/user.js';
+import generateToken from '../utils/jwt.js';
 
-exports.signup = async (req, res) => {
+export const signup = async (req, res) => {
   const { name, email, username, password } = req.body;
 
   try {
@@ -28,7 +28,7 @@ exports.signup = async (req, res) => {
   }
 };
 
-exports.signin = async (req, res) => {
+export const signin = async (req, res) => {
   const { username, password } = req.body;
 
   try {
@@ -44,7 +44,7 @@ exports.signin = async (req, res) => {
       return res.status(401).json({ error: 'Incorrect password' });
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = generateToken(user._id);
 
     res.json({ token });
   } catch (err) {

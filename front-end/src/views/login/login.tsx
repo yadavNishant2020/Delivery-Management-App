@@ -1,34 +1,74 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput, ScrollView, Alert } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 import { useStyle } from './style';
 import { useTheme } from '../../theme';
 
 const LogIn = () => {
   const theme = useTheme();
   const styles = useStyle(theme);
-  const [isSignUp, setIsSignUp] = useState(false); // State to toggle between login and sign-up
+  const [isSignUp, setIsSignUp] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [mobileNo, setMobileNo] = useState('');
+console.log(username);
+console.log(password);
 
-  const handleSignUp = () => {
-    // Implement sign-up logic here
-    if (!name || !email || !username || !password || !confirmPassword || !mobileNo) {
-      Alert.alert('Please fill in all fields.');
-      return;
+  const handleSignIn = async () => {
+    try {
+      const response = await fetch('http://192.168.195.27:5000/api/auth/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        Alert.alert('Sign in successful');
+        // Handle successful sign-in, e.g., navigate to another screen
+      } else {
+        Alert.alert(data.error);
+      }
+    } catch (error) {
+      Alert.alert('Error:', (error as Error).message);
     }
+  };
+  const handleSignUp = async () => {
+    // if (!name || !email || !username || !password || !confirmPassword || !mobileNo) {
+    //   Alert.alert('Please fill in all fields.');
+    //   return;
+    // }
 
-    if (password !== confirmPassword) {
-      Alert.alert('Passwords do not match.');
-      return;
+    // if (password !== confirmPassword) {
+    //   Alert.alert('Passwords do not match.');
+    //   return;
+    // }
+
+    try {
+      const response = await fetch('http://192.168.195.27:5000/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, username, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        Alert.alert('User created successfully');
+        setIsSignUp(false);
+      } else {
+        Alert.alert(data.error);
+      }
+    } catch (error) {
+      Alert.alert('Error:', (error as Error).message);
     }
-
-    console.log('Signing up with:', name, email, username, password, mobileNo);
-    // Example: Call an API or perform sign-up operations
   };
 
   return (
@@ -47,7 +87,6 @@ const LogIn = () => {
           />
 
           {isSignUp ? (
-            // Sign Up fields
             <>
               <TextInput
                 placeholder="Full Name"
@@ -79,22 +118,22 @@ const LogIn = () => {
                 value={password}
                 onChangeText={setPassword}
               />
-              <TextInput
+              {/* <TextInput
                 placeholder="Confirm Password"
                 style={styles.input}
                 placeholderTextColor="black"
                 secureTextEntry
                 value={confirmPassword}
                 onChangeText={setConfirmPassword}
-              />
-              <TextInput
+              /> */}
+              {/* <TextInput
                 placeholder="Mobile Number"
                 style={styles.input}
                 placeholderTextColor="black"
                 value={mobileNo}
                 onChangeText={setMobileNo}
                 keyboardType="phone-pad"
-              />
+              /> */}
               <TouchableOpacity
                 activeOpacity={0.7}
                 style={styles.signinbtn}
@@ -104,26 +143,29 @@ const LogIn = () => {
               </TouchableOpacity>
             </>
           ) : (
-            // Login fields
             <>
               <TextInput
                 placeholder="Enter your username"
                 style={styles.input}
                 placeholderTextColor="black"
+                value={username}
+                onChangeText={setUsername}
               />
               <TextInput
                 placeholder="Enter your password"
                 style={styles.input}
                 placeholderTextColor="black"
                 secureTextEntry
+                value={password}
+                onChangeText={setPassword}
               />
-              <TouchableOpacity activeOpacity={0.7} style={styles.signinbtn}>
+              <TouchableOpacity activeOpacity={0.7} style={styles.signinbtn} onPress={handleSignIn}
+              >
                 <Text style={styles.signinText}>Sign In</Text>
               </TouchableOpacity>
             </>
           )}
 
-          {/* Toggle between Sign Up and Login */}
           <TouchableOpacity
             activeOpacity={0.7}
             style={styles.signupBtn}
