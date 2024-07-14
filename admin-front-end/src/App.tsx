@@ -3,7 +3,7 @@ import SignInForm from './pages/auth/SignInForm';
 import Home from './pages/Home';
 import Navbar from './components/navbar';
 import Footer from './components/footer';
-import useAuthUser from './utils/auth';
+// import useAuthUser from './utils/auth';
 
 function App() {
   return (

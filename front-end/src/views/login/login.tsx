@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput, ScrollView, Alert } from 'react-native';
 import { useStyle } from './style';
 import { useTheme } from '../../theme';
+import { useNavigation } from '@react-navigation/native';
 
 const LogIn = () => {
+  const navigation = useNavigation();
   const theme = useTheme();
   const styles = useStyle(theme);
   const [isSignUp, setIsSignUp] = useState(false);
@@ -11,10 +13,10 @@ const LogIn = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [mobileNo, setMobileNo] = useState('');
-console.log(username);
-console.log(password);
+//   const [confirmPassword, setConfirmPassword] = useState('');
+//   const [mobileNo, setMobileNo] = useState('');
+// console.log(username);
+// console.log(password);
 
   const handleSignIn = async () => {
     try {
@@ -30,7 +32,7 @@ console.log(password);
 
       if (response.ok) {
         Alert.alert('Sign in successful');
-        // Handle successful sign-in, e.g., navigate to another screen
+        navigation.navigate('Home');  // Navigate to Home screen
       } else {
         Alert.alert(data.error);
       }
