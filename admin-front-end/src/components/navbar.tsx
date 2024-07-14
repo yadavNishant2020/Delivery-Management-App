@@ -13,7 +13,7 @@ const Navbar: React.FC= () => {
             <div className='container p-6 mx-auto lg:flex lg:justify-between lg:items-center'>
                 <div className='flex items-center justify-between'>
                     <Link to="/">
-                        <img className='w-[30%]' src={'https://seeklogo.com/images/B/black-company-logo-C40022C4D5-seeklogo.com.png'} alt='' />
+                        <img className='w-[30%]' src="/logo.png" alt='' />
                     </Link>
                     <div className='flex lg:hidden'>
                         <button
@@ -59,7 +59,7 @@ const Navbar: React.FC= () => {
                             Pricing
                         </Link>
                     </div>
-                    <a className='px-2 py-2 mt-4 text-sm text-center text-white capitalize bg-gray-700 rounded-full lg:mt-0 hover:bg-gray-500 lg:w-auto hidden lg:block' href='#'>
+                    <a className='px-2 py-2 mt-4 text-sm text-center text-white capitalize bg-[#f05e2b] rounded-full lg:mt-0 hover:bg-[#ca7657]  lg:w-auto hidden lg:block' href='#'>
                         NY
                     </a>
                 </div>

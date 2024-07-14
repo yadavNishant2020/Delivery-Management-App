@@ -1,4 +1,3 @@
-import React from 'react'
 
 function Footer() {
   return (
@@ -7,7 +6,7 @@ function Footer() {
         <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
                 <a href="" className="flex items-center">
-                <img className='w-[30%]' src={'https://seeklogo.com/images/B/black-company-logo-C40022C4D5-seeklogo.com.png'} alt='' />
+                <img className='w-[30%]' src="/logo.png" alt='' />
                 </a>
             </div>
             <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
