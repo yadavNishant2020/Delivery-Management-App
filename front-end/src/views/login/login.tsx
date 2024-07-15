@@ -1,8 +1,11 @@
+// LogIn.js
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, TextInput, ScrollView, Alert } from 'react-native';
 import { useStyle } from './style';
 import { useTheme } from '../../theme';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import { login } from '../../store/slice';
 
 const LogIn = () => {
   const navigation = useNavigation();
@@ -13,10 +16,8 @@ const LogIn = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-//   const [confirmPassword, setConfirmPassword] = useState('');
-//   const [mobileNo, setMobileNo] = useState('');
-// console.log(username);
-// console.log(password);
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const dispatch = useDispatch();
 
   const handleSignIn = async () => {
     try {
@@ -32,7 +33,8 @@ const LogIn = () => {
 
       if (response.ok) {
         Alert.alert('Sign in successful');
-        navigation.navigate('Home');  // Navigate to Home screen
+        dispatch(login());
+        navigation.navigate('Home' as never);
       } else {
         Alert.alert(data.error);
       }
@@ -40,16 +42,43 @@ const LogIn = () => {
       Alert.alert('Error:', (error as Error).message);
     }
   };
-  const handleSignUp = async () => {
-    // if (!name || !email || !username || !password || !confirmPassword || !mobileNo) {
-    //   Alert.alert('Please fill in all fields.');
-    //   return;
-    // }
 
-    // if (password !== confirmPassword) {
-    //   Alert.alert('Passwords do not match.');
-    //   return;
-    // }
+  const validatePassword = (password: string) => {
+    const minLength = 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumber = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+    if (password.length < minLength) {
+      return `Password must be at least ${minLength} characters long.`;
+    }
+    if (!hasUpperCase) {
+      return 'Password must contain at least one uppercase letter.';
+    }
+    if (!hasLowerCase) {
+      return 'Password must contain at least one lowercase letter.';
+    }
+    if (!hasNumber) {
+      return 'Password must contain at least one number.';
+    }
+    if (!hasSpecialChar) {
+      return 'Password must contain at least one special character.';
+    }
+    return null;
+  };
+
+  const handleSignUp = async () => {
+    const passwordError = validatePassword(password);
+    if (passwordError) {
+      Alert.alert(passwordError);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      Alert.alert('Passwords do not match.');
+      return;
+    }
 
     try {
       const response = await fetch('http://192.168.195.27:5000/api/auth/signup', {
@@ -64,6 +93,7 @@ const LogIn = () => {
 
       if (response.ok) {
         Alert.alert('User created successfully');
+        navigation.navigate('Home' as never);
         setIsSignUp(false);
       } else {
         Alert.alert(data.error);
@@ -120,22 +150,14 @@ const LogIn = () => {
                 value={password}
                 onChangeText={setPassword}
               />
-              {/* <TextInput
+              <TextInput
                 placeholder="Confirm Password"
                 style={styles.input}
                 placeholderTextColor="black"
                 secureTextEntry
                 value={confirmPassword}
                 onChangeText={setConfirmPassword}
-              /> */}
-              {/* <TextInput
-                placeholder="Mobile Number"
-                style={styles.input}
-                placeholderTextColor="black"
-                value={mobileNo}
-                onChangeText={setMobileNo}
-                keyboardType="phone-pad"
-              /> */}
+              />
               <TouchableOpacity
                 activeOpacity={0.7}
                 style={styles.signinbtn}
@@ -161,7 +183,10 @@ const LogIn = () => {
                 value={password}
                 onChangeText={setPassword}
               />
-              <TouchableOpacity activeOpacity={0.7} style={styles.signinbtn} onPress={handleSignIn}
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.signinbtn}
+                onPress={handleSignIn}
               >
                 <Text style={styles.signinText}>Sign In</Text>
               </TouchableOpacity>

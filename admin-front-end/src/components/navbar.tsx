@@ -53,10 +53,10 @@ const Navbar: React.FC= () => {
                             Home
                         </Link>
                         <Link to="/builder" className='block mt-4 text-gray-900 hover:text-gray-500 lg:mt-0'>
-                            Document Signer
+                            Page 2
                         </Link>
                         <Link to="/pricing" className='block mt-4 text-gray-900 hover:text-gray-500 lg:mt-0'>
-                            Pricing
+                            Page 3
                         </Link>
                     </div>
                     <a className='px-2 py-2 mt-4 text-sm text-center text-white capitalize bg-[#f05e2b] rounded-full lg:mt-0 hover:bg-[#ca7657]  lg:w-auto hidden lg:block' href='#'>
