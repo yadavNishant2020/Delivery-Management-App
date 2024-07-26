@@ -1,6 +1,6 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.awesome"
+3    package="com.delivery"
 4    android:versionCode="1"
 5    android:versionName="1.0" >
 6
@@ -27,12 +27,12 @@
 19
 20    <permission
 20-->[androidx.core:core:1.9.0] C:\Users\yadav\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
-21        android:name="com.awesome.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+21        android:name="com.delivery.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
 21-->[androidx.core:core:1.9.0] C:\Users\yadav\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
 22        android:protectionLevel="signature" />
 22-->[androidx.core:core:1.9.0] C:\Users\yadav\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
 23
-24    <uses-permission android:name="com.awesome.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+24    <uses-permission android:name="com.delivery.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 24-->[androidx.core:core:1.9.0] C:\Users\yadav\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
 24-->[androidx.core:core:1.9.0] C:\Users\yadav\.gradle\caches\transforms-3\13659b94c66de92d98d7f8af61234b95\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
 25    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
@@ -41,7 +41,7 @@
 26
 27    <application
 27-->D:\Freelance Projects\Driver-Management-App\front-end\android\app\src\main\AndroidManifest.xml:5:5-24:19
-28        android:name="com.awesome.MainApplication"
+28        android:name="com.delivery.MainApplication"
 28-->D:\Freelance Projects\Driver-Management-App\front-end\android\app\src\main\AndroidManifest.xml:6:7-38
 29        android:allowBackup="false"
 29-->D:\Freelance Projects\Driver-Management-App\front-end\android\app\src\main\AndroidManifest.xml:10:7-34
@@ -61,7 +61,7 @@
 37-->D:\Freelance Projects\Driver-Management-App\front-end\android\app\src\debug\AndroidManifest.xml:6:9-44
 38        <activity
 38-->D:\Freelance Projects\Driver-Management-App\front-end\android\app\src\main\AndroidManifest.xml:12:7-23:18
-39            android:name="com.awesome.MainActivity"
+39            android:name="com.delivery.MainActivity"
 39-->D:\Freelance Projects\Driver-Management-App\front-end\android\app\src\main\AndroidManifest.xml:13:9-37
 40            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
 40-->D:\Freelance Projects\Driver-Management-App\front-end\android\app\src\main\AndroidManifest.xml:15:9-118
@@ -110,7 +110,7 @@
 63-->[androidx.emoji2:emoji2:1.2.0] C:\Users\yadav\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
 64            android:name="androidx.startup.InitializationProvider"
 64-->[androidx.emoji2:emoji2:1.2.0] C:\Users\yadav\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
-65            android:authorities="com.awesome.androidx-startup"
+65            android:authorities="com.delivery.androidx-startup"
 65-->[androidx.emoji2:emoji2:1.2.0] C:\Users\yadav\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
 66            android:exported="false" >
 66-->[androidx.emoji2:emoji2:1.2.0] C:\Users\yadav\.gradle\caches\transforms-3\faa3592d2fc203d6c74b9a5f601058a1\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37

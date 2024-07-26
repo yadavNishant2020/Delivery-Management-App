@@ -1,4 +1,4 @@
-package com.awesome
+package com.delivery
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
